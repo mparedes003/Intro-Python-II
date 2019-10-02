@@ -69,17 +69,17 @@ while True:
         if player.location.n_to:
             player.location = player.location.n_to
 
-    # Enter "S" command to move NORTH
+    # Enter "S" command to move SOUTH
     elif command.upper() == "S":
         if player.location.s_to:
             player.location = player.location.s_to
 
-    # Enter "N" command to move NORTH
+    # Enter "E" command to move EAST
     elif command.upper() == "E":
         if player.location.e_to:
             player.location = player.location.e_to
 
-    # Enter "N" command to move NORTH
+    # Enter "W" command to move WEST
     elif command.upper() == "W":
         if player.location.w_to:
             player.location = player.location.w_to
