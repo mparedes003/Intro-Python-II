@@ -64,9 +64,24 @@ while True:
         break
 #
 # If the user enters a cardinal direction, attempt to move to the room there.
-# Print an error message if the movement isn't allowed.
-#
     # Enter "N" command to move NORTH
     elif command.upper() == "N":
         if player.location.n_to:
             player.location = player.location.n_to
+
+    # Enter "S" command to move NORTH
+    elif command.upper() == "S":
+        if player.location.s_to:
+            player.location = player.location.s_to
+
+    # Enter "N" command to move NORTH
+    elif command.upper() == "E":
+        if player.location.e_to:
+            player.location = player.location.e_to
+
+    # Enter "N" command to move NORTH
+    elif command.upper() == "W":
+        if player.location.w_to:
+            player.location = player.location.w_to
+# Print an error message if the movement isn't allowed.
+#
