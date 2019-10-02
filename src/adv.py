@@ -1,6 +1,9 @@
 from room import Room
+from player import Player
 
+# Instantiate a few new Room objects
 # Declare all the rooms
+
 
 room = {
     'outside':  Room("Outside Cave Entrance",
@@ -38,14 +41,32 @@ room['treasure'].s_to = room['narrow']
 #
 
 # Make a new player object that is currently in the 'outside' room.
+player = Player(room['outside'])
 
 # Write a loop that:
-#
-# * Prints the current room name
+while True:
+    #
+    # * Prints the current room name in the color green
+    # which room the player currently is in
+    print("\n\x1b[32m You are in the {}.".format(player.location.name))
 # * Prints the current description (the textwrap module might be useful here).
+    print(player.location.description)
 # * Waits for user input and decides what to do.
+    input_cmd = input("What would you like to do: ")
+
+    command = input_cmd
+# If the user enters "q", quit the game.
+    # Upper Method automatically converts
+    # any lowercase entries to UPPERCASE
+    # to fascilitate better user experience
+    # and avoid errors or non-responsiveness
+    if command.upper() == "Q":
+        break
 #
 # If the user enters a cardinal direction, attempt to move to the room there.
 # Print an error message if the movement isn't allowed.
 #
-# If the user enters "q", quit the game.
+    # Enter "N" command to move NORTH
+    elif command.upper() == "N":
+        if player.location.n_to:
+            player.location = player.location.n_to
