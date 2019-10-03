@@ -2,6 +2,7 @@ from room import Room
 from player import Player
 from item import Item
 
+# Instantiate a few new Item objects
 # Declare some items
 items = {
     "gold_coins": Item("gold coins"),
