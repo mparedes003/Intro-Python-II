@@ -9,6 +9,7 @@ items = {
     "potion": Item("potion"),
     "sword": Item("sword"),
     "torch": Item("torch"),
+    "two_rocks": Item("two rocks"),
     "treasure_chest": Item("treasure chest filled with diamonds")
 }
 
@@ -18,21 +19,21 @@ items = {
 
 room = {
     'outside':  Room("Outside Cave Entrance",
-                     "North of you, the cave mount beckons"),
+                     "North of you, the cave mount beckons", [items['two_rocks']]),
 
     'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
-passages run north and east."""),
+passages run north and east.""", [items['torch']]),
 
     'overlook': Room("Grand Overlook", """A steep cliff appears before you, falling
 into the darkness. Ahead to the north, a light flickers in
-the distance, but there is no way across the chasm."""),
+the distance, but there is no way across the chasm.""", []),
 
     'narrow':   Room("Narrow Passage", """The narrow passage bends here from west
-to north. The smell of gold permeates the air."""),
+to north. The smell of gold permeates the air.""", []),
 
     'treasure': Room("Treasure Chamber", """You've found the long-lost treasure
 chamber! Sadly, it has already been completely emptied by
-earlier adventurers. The only exit is to the south."""),
+earlier adventurers. The only exit is to the south.""", []),
 }
 
 
@@ -52,18 +53,23 @@ room['treasure'].s_to = room['narrow']
 #
 
 # Make a new player object that is currently in the 'outside' room.
-player = Player(room['outside'])
+player = Player('Angel', room['outside'])
 
 # Write a loop that:
 while True:
     #
     # * Prints the current room name in the color green
-    # which room the player currently is in
+            # which room the player currently is in
     print("\n\x1b[32m You are in the {}.".format(player.location.name))
+
 # * Prints the current description (the textwrap module might be useful here).
     print(player.location.description)
+
+    # Print the list of items in the room
+    player.location.list_items()
+
 # * Waits for user input and decides what to do.
-    input_cmd = input("What would you like to do: ")
+    input_cmd = input("\nWhat would you like to do: ")
 
     command = input_cmd
 # If the user enters "q", quit the game.
