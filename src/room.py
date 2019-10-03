@@ -47,3 +47,7 @@ class Room:
             if item.name == item_name:
                 return True
         return False
+
+     # function that removes an item from a room
+        def remove_item(self, item):
+            del self.items[self.items.index(item)]
