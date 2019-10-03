@@ -123,6 +123,22 @@ while True:
             # player TAKEs item with them
             player.get(new_item)
 
+# DROP an item in a room
+    if command.upper() == 'DROP':
+        # if player is not holding any items
+        if not player.items:
+            print("\nYou are not carrying any items.")
+        # if item is not holding item they want to drop
+        elif not player.find_item(target):
+            print("\n You are not carrying that item right now.")
+
+        else:
+            drop_item = target
+            # remove the item from the player'sm inventory
+            player.drop(drop_item)
+            # add the item to the room's items
+            player.location.add_item(drop_item)
+
 # Print an error message if the movement isn't allowed.
     else:
         print(
