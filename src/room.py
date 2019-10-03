@@ -48,6 +48,10 @@ class Room:
                 return True
         return False
 
-     # function that removes an item from a room
+    # function that removes an item from a room
     def remove_item(self, item):
         del self.items[self.items.index(item)]
+
+    # function that adds an item to the room
+    def add_item(self, item):
+        self.items.append(item)
