@@ -11,6 +11,12 @@ class Room:
         self.e_to = None
         self.w_to = None
 
+    def __str__(self):      # for human consumption
+        return f"Room (name: {self.name})"
+
+    def __repr__(self):     # for programmers consumption
+        return f"Room(name: {self.name})"
+
     def direction_to_move_in(self, direction):
         if direction == "N":
             return self.n_to
