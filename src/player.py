@@ -29,3 +29,10 @@ class Player:
     # function that allows player to drop an item
     def drop(self, item):
         del self.items[self.items.index(item)]
+
+    # function that checks player's inventory for a specific item
+    def find_item(self, item_name):
+        for item in self.items:
+            if item.name == item_name:
+                return True
+        return False

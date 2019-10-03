@@ -133,7 +133,7 @@ while True:
             print("\n You are not carrying that item right now.")
 
         else:
-            drop_item = target
+            drop_item = items[target]
             # remove the item from the player'sm inventory
             player.drop(drop_item)
             # add the item to the room's items
