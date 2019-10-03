@@ -61,27 +61,21 @@ while True:
     # to fascilitate better user experience
     # and avoid errors or non-responsiveness
     if command.upper() == "Q":
+        print("\nTHANK YOU FOR PLAYING!\nHOPE TO SEE YOU AGAIN SOON :) \n")
         break
 #
 # If the user enters a cardinal direction, attempt to move to the room there.
-    # Enter "N" command to move NORTH
-    elif command.upper() == "N":
-        if player.location.n_to:
-            player.location = player.location.n_to
+    if command.upper() == "N" or command.upper() == "S" or command.upper() == "E" or command.upper() == "W":
+        enter_room = player.location.direction_to_move_in(command.upper())
 
-    # Enter "S" command to move SOUTH
-    elif command.upper() == "S":
-        if player.location.s_to:
-            player.location = player.location.s_to
+        # If there is no room in the dicrection you want to move in, print an error message
+        if enter_room == None:
+            print(
+                "\n===Moving in that direction is not an option===\n           Please try again\n")
+        else:
+            # Else move the user to the room specified
+            player.change_location(enter_room)
 
-    # Enter "E" command to move EAST
-    elif command.upper() == "E":
-        if player.location.e_to:
-            player.location = player.location.e_to
-
-    # Enter "W" command to move WEST
-    elif command.upper() == "W":
-        if player.location.w_to:
-            player.location = player.location.w_to
 # Print an error message if the movement isn't allowed.
-#
+    else:
+        print("\n===I don't think I know what to do with that===\n          Please try another command\n")
