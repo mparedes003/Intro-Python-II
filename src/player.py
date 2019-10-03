@@ -3,7 +3,8 @@
 
 
 class Player:
-    def __init__(self, location):
+    def __init__(self, name, location):
+        self.name = name            # name of player
         self.location = location    # what room they are currently in
 
     def change_location(self, new_location):
@@ -13,4 +14,4 @@ class Player:
         return f"Player (location: {self.location})"
 
     def __repr__(self):     # for programmers consumption
-        return f"Player(location: {self.name})"
+        return f"Player({repr(self.name)}, {repr(self.location)})"
