@@ -25,3 +25,7 @@ class Player:
     def get(self, item):
         # append method adds the item to the players inventory
         self.items.append(item)
+
+    # function that allows player to drop an item
+    def drop(self, item):
+        del self.items[self.items.index(item)]
