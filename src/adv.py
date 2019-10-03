@@ -1,5 +1,15 @@
 from room import Room
 from player import Player
+from item import Item
+
+# Declare some items
+items = {
+    "gold_coins": Item("gold coins"),
+    "potion": Item("potion"),
+    "sword": Item("sword"),
+    "torch": Item("torch"),
+    "treasure_chest": Item("treasure chest filled with diamonds")
+}
 
 # Instantiate a few new Room objects
 # Declare all the rooms
@@ -71,11 +81,12 @@ while True:
         # If there is no room in the dicrection you want to move in, print an error message
         if enter_room == None:
             print(
-                "\n===Moving in that direction is not an option===\n           Please try again\n")
+                "\n\x1b[35m===Moving in that direction is not an option===\n           Please try again\n")
         else:
             # Else move the user to the room specified
             player.change_location(enter_room)
 
 # Print an error message if the movement isn't allowed.
     else:
-        print("\n===I don't think I know what to do with that===\n          Please try another command\n")
+        print(
+            "\n\x1b[35m===I don't think I know what to do with that===\n          Please try another command\n")
