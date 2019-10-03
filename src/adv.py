@@ -60,7 +60,8 @@ while True:
     #
     # * Prints the current room name in the color green
             # which room the player currently is in
-    print("\n\x1b[32m You are in the {}.".format(player.location.name))
+    print("\n\x1b[32m You are in the {}.".format(
+        player.location.name))
 
 # * Prints the current description (the textwrap module might be useful here).
     print(player.location.description)
@@ -70,7 +71,8 @@ while True:
 
 # * Waits for user input and decides what to do.
     # use split method to make room to add a second input to parse
-    input_cmd = input("\nWhat would you like to do: ").split(' ')
+    input_cmd = input(
+        "\n\x1b[34mEnter [help] for a list of commands\n\x1b[32mWhat would you like to do: ").split(' ')
 
     # Add the ability to parse more than 1 input command
     if 1 <= len(input_cmd) <= 2:
@@ -94,7 +96,7 @@ while True:
         break
 #
 # If the user enters a cardinal direction, attempt to move to the room there.
-    if command.upper() == "N" or command.upper() == "S" or command.upper() == "E" or command.upper() == "W":
+    elif command.upper() == "N" or command.upper() == "S" or command.upper() == "E" or command.upper() == "W":
         enter_room = player.location.direction_to_move_in(command.upper())
 
         # If there is no room in the dicrection you want to move in, print an error message
@@ -106,7 +108,7 @@ while True:
             player.change_location(enter_room)
 
 # GET or TAKE an item from a room
-    if command.upper() == 'GET' or 'TAKE':
+    elif command.upper() == 'GET' or 'TAKE':
         # if there are no items in the room
         if not player.location.items:
             print("\nThere is nothing here for you to pick up.")
@@ -124,7 +126,7 @@ while True:
             player.get(new_item)
 
 # DROP an item in a room
-    if command.upper() == 'DROP':
+    elif command.upper() == 'DROP':
         # if player is not holding any items
         if not player.items:
             print("\nYou are not carrying any items.")
@@ -138,6 +140,11 @@ while True:
             player.drop(drop_item)
             # add the item to the room's items
             player.location.add_item(drop_item)
+
+    elif command == "help":
+        print(
+            "\n\x1b[37mLIST OF COMMANDS\n----------------\n[n] = to move north\n[s] = to move south\n[e] = to move east\n[w] = to move west\n[get <item>] or [take <item>] = to pick up an item\n[drop <item>] = to drop an item\n[q] = to quit the game")
+
 
 # Print an error message if the movement isn't allowed.
     else:
