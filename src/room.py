@@ -3,7 +3,7 @@
 
 
 class Room:
-    def __init__(self, name, description, items):
+    def __init__(self, name, description, items=None):
         self.name = name                  # name of room
         self.description = description    # what player sees and feels when in the room
         self.items = [] if items is None else items  # if there are no items in the room
@@ -49,5 +49,5 @@ class Room:
         return False
 
      # function that removes an item from a room
-        def remove_item(self, item):
-            del self.items[self.items.index(item)]
+    def remove_item(self, item):
+        del self.items[self.items.index(item)]

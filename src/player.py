@@ -4,7 +4,7 @@ from item import Item
 
 
 class Player:
-    def __init__(self, name, items=None, location):
+    def __init__(self, name, location, items=None):
         self.name = name            # name of player
         self.location = location    # what room they are currently in
         # If the player is not carrying any items
