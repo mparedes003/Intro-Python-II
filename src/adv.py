@@ -9,7 +9,7 @@ items = {
     "potion": Item("potion"),
     "sword": Item("sword"),
     "torch": Item("torch"),
-    "two_rocks": Item("two rocks"),
+    "rocks": Item("rocks"),
     "treasure_chest": Item("treasure chest filled with diamonds")
 }
 
@@ -19,7 +19,7 @@ items = {
 
 room = {
     'outside':  Room("Outside Cave Entrance",
-                     "North of you, the cave mount beckons", [items['two_rocks']]),
+                     "North of you, the cave mount beckons", [items['rocks']]),
 
     'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
 passages run north and east.""", [items['torch']]),
@@ -69,9 +69,21 @@ while True:
     player.location.list_items()
 
 # * Waits for user input and decides what to do.
-    input_cmd = input("\nWhat would you like to do: ")
+    # use split method to make room to add a second input to parse
+    input_cmd = input("\nWhat would you like to do: ").split(' ')
 
-    command = input_cmd
+    # Add the ability to parse more than 1 input command
+    if 1 <= len(input_cmd) <= 2:
+        # When 1 input command is entered
+            # use 'command'
+        command = input_cmd[0]
+        # When 2 input commands are entered
+        # separated by a comma
+        # due to using the split method above
+        # use 'target'
+        # When more than 2 input commands are entered
+        # that's not an accepted command
+        target = input_cmd[1] if len(input_cmd) == 2 else None
 # If the user enters "q", quit the game.
     # Upper Method automatically converts
     # any lowercase entries to UPPERCASE
@@ -92,6 +104,24 @@ while True:
         else:
             # Else move the user to the room specified
             player.change_location(enter_room)
+
+# GET or TAKE an item from a room
+    if command.upper() == 'GET' or 'TAKE':
+        # if there are no items in the room
+        if not player.location.items:
+            print("\nThere is nothing here for you to pick up.")
+        # if the item you want to pick up
+            # is not one of the items in the room
+        elif not player.location.find_item(target):
+            print("\nThis is not the item you are looking for.")
+        # pick up the item from the room
+        else:
+            # new item is the target item
+            new_item = items[target]
+            # remove the item from the room
+            player.location.remove_item(new_item)
+            # player TAKEs item with them
+            player.get(new_item)
 
 # Print an error message if the movement isn't allowed.
     else:
