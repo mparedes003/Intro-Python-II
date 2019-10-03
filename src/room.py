@@ -15,7 +15,7 @@ class Room:
         return f"Room (name: {self.name})"
 
     def __repr__(self):     # for programmers consumption
-        return f"Room(name: {self.name})"
+        return f"Room({repr(self.name)}, {repr(self.description)})"
 
     def direction_to_move_in(self, direction):
         if direction == "N":
