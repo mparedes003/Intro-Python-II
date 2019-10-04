@@ -96,7 +96,7 @@ while True:
         break
 #
 # If the user enters a cardinal direction, attempt to move to the room there.
-    elif command.upper() == "N" or command.upper() == "S" or command.upper() == "E" or command.upper() == "W":
+    if command.upper() == "N" or command.upper() == "S" or command.upper() == "E" or command.upper() == "W":
         enter_room = player.location.direction_to_move_in(command.upper())
 
         # If there is no room in the dicrection you want to move in, print an error message
@@ -108,7 +108,7 @@ while True:
             player.change_location(enter_room)
 
 # GET or TAKE an item from a room
-    elif command.upper() == 'GET' or 'TAKE':
+    if command.upper() == 'GET' or 'TAKE':
         # if there are no items in the room
         if not player.location.items:
             print("\nThere is nothing here for you to pick up.")
@@ -126,7 +126,7 @@ while True:
             player.get(new_item)
 
 # DROP an item in a room
-    elif command.upper() == 'DROP':
+    if command.upper() == 'DROP':
         # if player is not holding any items
         if not player.items:
             print("\nYou are not carrying any items.")
@@ -141,7 +141,7 @@ while True:
             # add the item to the room's items
             player.location.add_item(drop_item)
 
-    elif command == "help":
+    if command == "help":
         print(
             "\n\x1b[37mLIST OF COMMANDS\n----------------\n[n] = to move north\n[s] = to move south\n[e] = to move east\n[w] = to move west\n[get <item>] or [take <item>] = to pick up an item\n[drop <item>] = to drop an item\n[q] = to quit the game")
 
